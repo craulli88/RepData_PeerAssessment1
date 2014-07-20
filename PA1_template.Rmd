@@ -1,0 +1,44 @@
+PA1 Assignment
+========================================================
+
+```{r Load Data,echo=TRUE}
+  setwd("/Users/chris/Documents")
+  data <- read.csv("/Users/chris/Documents/activity.csv")
+  dataframe <- data.frame(data)
+  df1 <- na.omit(dataframe)
+  df <- subset(df1, select = c(date,steps))
+  rownames(df) <- NULL
+```
+```{r Mean,echo=TRUE, fig.width=7, fig.height=6}
+  install.packages("ggplot2")
+  library(ggplot2)
+  library(scales)
+  ggplot(df, aes(x=steps)) + geom_histogram()
+  
+  mean <- mean(df[[2]])
+  median <- median(df[[2]])
+  print1 <- paste("The mean number of steps is: ", mean, sep="")
+  print2 <- paste("The median number of steps is: ", median, sep="")
+  print1
+  print2
+```
+
+```{r Daily Activity Pattern,echo=TRUE}
+  maximum <- max(df$steps)
+  max -> dataframe[df$steps==max,3]
+  print3 <- paste("The 5-minute interval that contains the maximum number of steps is: ", max, sep="")
+  print3
+```
+
+```{r Imputing Missing Values,echo=TRUE}
+  sum <- sum(is.na(dataframe$steps))
+  print4 <- paste("The total number of missing values in tha data set is: ", sum, sep="")
+  print4
+```
+
+```{r Differences in Activity Patterns,echo=TRUE}
+  print5 <- "To imput missing data my strategy would be to find the mean of that particular interval and then in a loop find each NA value and replace it with the corresponding mean value in a new dataset."
+  print5
+```
+
+
